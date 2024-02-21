@@ -1,0 +1,4 @@
+.custom-size-image {
+    width: 50%; /* Puedes ajustar el porcentaje según lo que necesites */
+    height: auto; /* Para mantener la proporción de la imagen */
+  }

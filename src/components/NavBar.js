@@ -28,8 +28,6 @@ function NavBar({ img }) {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
 
-            <a className="navbar-item">Catalogo Muebles</a>
-
             <a className="navbar-item">Hogar</a>
 
             <a className="navbar-item">Oficinas</a>

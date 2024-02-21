@@ -1,17 +1,20 @@
-import NavBar from "./components/NavBar";
-import ItemListContainer from "./components/ItemListContainer";
+import { BrowserRouter, Route , Routes } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Catalogo from "./pages/Catalogo";
 import "bulma/css/bulma.css";
-import logorec from "./img/logorec.png"
+import DetailPage from "./pages/DetalleProducto";
 
 function App(){
-    const msj= "Hola, Esto sirve?"
     return (
-        <div>
-        <NavBar img = {logorec}/>
-
-        <ItemListContainer greeting={msj}/>
-
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout/>}>
+                <Route index element={<Catalogo />} />
+                <Route path="producto/:idproducto" element={<DetailPage />} />
+                </Route>
+                <Route path="*" element={<h1>404 no encontrado</h1>} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
