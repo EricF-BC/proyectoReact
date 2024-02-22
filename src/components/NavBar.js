@@ -29,9 +29,9 @@ function NavBar({ img }) {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
 
-            <Link to="lala" className="navbar-item">Hogar</Link>
+            <Link to="/" className="navbar-item">Hogar</Link>
 
-            <a className="navbar-item">Oficinas</a>
+            <Link to="/" className="navbar-item">Oficinas</Link>
 
           </div>
 
