@@ -1,4 +1,5 @@
 import CartWidget from "./CartWidget";
+import {Link} from "react-router-dom";
 
 function NavBar({ img }) {
   return (
@@ -9,9 +10,9 @@ function NavBar({ img }) {
         aria-label="main navigation"
       >
         <div className="navbar-brand">
-          <a>
+          <Link to="/">
             <img src={img} width="180" alt="Logo" style={{ height: "100%"}} />
-          </a>
+          </Link>
           <a
             role="button"
             className="navbar-burger"
@@ -28,7 +29,7 @@ function NavBar({ img }) {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
 
-            <a className="navbar-item">Hogar</a>
+            <Link to="lala" className="navbar-item">Hogar</Link>
 
             <a className="navbar-item">Oficinas</a>
 

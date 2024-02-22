@@ -3,28 +3,23 @@ import "react-rater/lib/react-rater.css";
 import  ProductDetail from "../components/DetalleProducto/productDetail";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import products from "../datatest";
-
+import productList from "../datatest";
 
 const DetailPage = ({}) => {
-    let { productId } = useParams();
+    const { productoId } = useParams();
+
     const [product, setProduct] = useState(null);
-    console.log(product);
+
     useEffect(() => {
-      const productData = products.find((p) => p.id === parseInt(productId));
-      setProduct(productData);
-    }, [productId]);   
-    
+      const productObject = productList.find((producto) => producto.id === parseInt(productoId));
+      setProduct(productObject);
+      
+    }, [productoId]);   
     
     return (
         <div>
         {product ? (
-          <ProductDetail
-            product={product}
-            onAddToCart={() => {
-              /* Funcion Futura */
-            }}
-          />
+          <ProductDetail product={product} />
         ) : (
           <p>Cargando producto...</p>
         )}
