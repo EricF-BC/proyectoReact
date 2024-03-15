@@ -1,8 +1,7 @@
 import "react-rater/lib/react-rater.css";
 import "./productDetail.css";
 
-const ProductDetail = ({product}) => {
-    
+const ProductDetail = ({ product }) => {
   return (
     <div className="section">
       <div className="container">
@@ -12,7 +11,11 @@ const ProductDetail = ({product}) => {
               <div className="column is-one-fifth"></div>
               <div className="column">
                 <figure className="image is-3by2">
-                  <img className="custom-size-image" src={product.image} alt="" />
+                  <img
+                    className="custom-size-image"
+                    src={product.image}
+                    alt=""
+                  />
                 </figure>
               </div>
             </div>
@@ -27,7 +30,9 @@ const ProductDetail = ({product}) => {
                     </span>
                   </div>
                 </div>
-                <h1 className="title is-3 has-text-weight-bold">{product.title}</h1>
+                <h1 className="title is-3 has-text-weight-bold">
+                  {product.title}
+                </h1>
                 <div className="block">
                   <span className="is-size-3 ">{product.price}</span>
                 </div>
@@ -41,10 +46,27 @@ const ProductDetail = ({product}) => {
                   </span>
                 </div>
                 <div className="block">
-                  <span className="is-size-6 "> Cantidad: {product.lot} </span>
+                  <span className="is-size-6 ">
+                    {" "}
+                    Cantidad Disponible: {product.lot}{" "}
+                  </span>
                 </div>
                 <div className="block">
                   <span className="is-size-6 "> {product.description} </span>
+                </div>
+
+                  <div className="block">
+                  <div className="column is-paddingless is-one-quarter">
+                    <div className="control ">
+                      <input
+                        className="input"
+                        type="number"
+                        placeholder="1"
+                        min = "1"
+                        max={product.lot}
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="field">
                   <div className="control">
@@ -65,6 +87,6 @@ const ProductDetail = ({product}) => {
       </div>
     </div>
   );
-}
+};
 
 export default ProductDetail;

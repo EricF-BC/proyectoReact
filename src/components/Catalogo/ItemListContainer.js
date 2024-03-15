@@ -26,10 +26,26 @@ const ItemListContainer = () => {
 }
 
 
+const getItemCategory = async (category)=>{
 
-  useEffect(()=>{   
-      getItemList();
-  }, [[categoryId]])
+  const data = await getDocs(itemsCollectionRef);
+
+  const filteredData = data.docs.map( (doc)=>({
+      ...doc.data(),
+      id:doc.id
+  }))
+  .filter((item) => item.category === category);
+
+  setItemList(filteredData);
+}
+
+useEffect(()=>{
+  if (categoryId){
+    getItemCategory(categoryId);
+  }else{
+    getItemList();
+  }
+}, [[categoryId]])
 
 
     return (

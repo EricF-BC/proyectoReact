@@ -1,9 +1,9 @@
 import ItemListContainer from "../components/Catalogo/ItemListContainer";
 
-function Catalogo() {
+function Catalogo(categoryId) {
   return (
     <div className="section">
-        <ItemListContainer/>
+        <ItemListContainer categoryId = {categoryId}/>
     </div>
   );
 }

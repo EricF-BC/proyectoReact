@@ -11,6 +11,7 @@ function App(){
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Catalogo />} />
+                    <Route path="/:categoryId" element={<Catalogo/>}/>
                     <Route path="producto/:productoId" element={<DetailPage />}/>
                 </Route>
                 <Route path="*" element={<h1>404 no encontrado</h1>} />
