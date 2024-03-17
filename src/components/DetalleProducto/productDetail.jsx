@@ -2,7 +2,7 @@ import "react-rater/lib/react-rater.css";
 import "./productDetail.css";
 import addToCart from "../../pages/cart.jsx"
 import { useCart } from "../../hooks/useCart";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductDetail = ({ product }) => {
@@ -13,8 +13,14 @@ const ProductDetail = ({ product }) => {
   const handleChange = (event) => {
     setInputValue(event.target.value);
     let productQuantity = { ...product, quantity: parseInt(inputValue) };
-    setCart(productQuantity)
+    setCart([productQuantity])
   };
+
+
+  useEffect(() => {
+    let productQuantity = { ...product, quantity: 1 };
+    setCart([productQuantity]);
+  });
   
   return (
     <div className="section">
@@ -85,9 +91,9 @@ const ProductDetail = ({ product }) => {
                 </div>
                 <div className="field">
                   <div className="control">
-                    <button className="button is-fullwidth is-dark">
-                      Comprar
-                    </button>
+                    <Link className="button is-fullwidth is-dark" to="/checkout" state={{ arrayData: cart }}  onClick={() => addToCart(product)}>
+                      Comprar solo este producto
+                    </Link>
                   </div>
                 </div>
                 <div className="control">
