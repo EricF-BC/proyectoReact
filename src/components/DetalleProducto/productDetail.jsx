@@ -1,7 +1,21 @@
 import "react-rater/lib/react-rater.css";
 import "./productDetail.css";
+import addToCart from "../../pages/cart.jsx"
+import { useCart } from "../../hooks/useCart";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductDetail = ({ product }) => {
+  const { addToCart} = useCart()
+  const [inputValue, setInputValue] = useState('1');
+  const [cart, setCart] = useState({});
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+    let productQuantity = { ...product, quantity: parseInt(inputValue) };
+    setCart(productQuantity)
+  };
+  
   return (
     <div className="section">
       <div className="container">
@@ -60,10 +74,11 @@ const ProductDetail = ({ product }) => {
                     <div className="control ">
                       <input
                         className="input"
+                        value = {inputValue}
                         type="number"
-                        placeholder="1"
                         min = "1"
                         max={product.lot}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -76,7 +91,7 @@ const ProductDetail = ({ product }) => {
                   </div>
                 </div>
                 <div className="control">
-                  <button className="button is-fullwidth">
+                  <button className="button is-fullwidth" onClick={() => addToCart(product)}>
                     Agregar al carrito
                   </button>
                 </div>

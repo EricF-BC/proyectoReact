@@ -1,11 +1,11 @@
-import CartWidget from "./CartWidget";
+import { Cart } from "../Cart/Cart";
 import {Link} from "react-router-dom";
 
 function NavBar({ img }) {
   return (
     <div>
       <nav
-        className="navbar is-black has-shadow "
+        className="navbar is-black has-shadow"
         role="navigation"
         aria-label="main navigation"
       >
@@ -37,7 +37,7 @@ function NavBar({ img }) {
           </div>
 
           <div className="navbar-end ">
-          <CartWidget/>
+          <Cart/>
           </div>
 
         </div>

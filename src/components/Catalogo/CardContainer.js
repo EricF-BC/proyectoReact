@@ -1,8 +1,12 @@
-import "./CardContainer.css";
+import { useCart } from "../../hooks/useCart";
+import { AddToCartIcon } from "../../img/icons";
 import { Link } from "react-router-dom";
-
+import addToCart from "../../pages/cart.jsx"
 
 function CardContainer({ product }) {
+
+  const { addToCart, cart } = useCart()
+
   return (
     <div className="column is-one-third">
       <div className="card has-background-light">
@@ -33,7 +37,9 @@ function CardContainer({ product }) {
           >
             Detalles
           </Link>
-          <a className="card-footer-item has-text-white">Agregar al carrito</a>
+          <button onClick={() => addToCart(product)}>
+            <AddToCartIcon />
+          </button>
         </footer>
       </div>
     </div>

@@ -3,51 +3,41 @@ import ProductDetail from "../components/DetalleProducto/productDetail";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 
 const DetailPage = ({}) => {
   const { productoId } = useParams();
-  const [itemList, setItemList] = useState([]);
-  const itemsCollectionRef = collection(db, "Items");
   const [productFinal, setProduct] = useState(null);
-
-  const getItemList = async () => {
-    const data = await getDocs(itemsCollectionRef);
-
-    const filteredData = data.docs.map((doc) => ({
-      ...doc.data(),  
-      id: doc.id,
-    }));
-
-    setItemList(filteredData);
-  }; 
-
-  const getItemObject = async () => {
-    const productObject = itemList.find(
-      (pr) => pr.id === productoId
-    );
-    setProduct(productObject);
-  };
+  const [flag, setFlag] = useState(true);
 
   useEffect(() => {
-    getItemList();
+    const getProduct = async (productoId) => {
+      try {
+        const itemsCollectionRef = doc(db, "Items", productoId);
+        const data = await getDoc(itemsCollectionRef);
+        if (data.exists()) {
+          setProduct({ id: data.id, ...data.data() });
+        } else {
+          console.log("No se encontró el producto!");
+        }
+      } catch (error) {
+        console.error("Error al obtener el producto:", error);
+      } finally {
+        setFlag(false);
+      }
+    };
+
+    getProduct(productoId);
   }, [productoId]);
-
-
-  useEffect(() => {
-    if (itemList.length > 0) {
-      getItemObject();
-    }
-  }, [itemList]);
-
-
 
   return (
     <div>
-      {productFinal ? (
+      {flag ? (
+        <p>Cargando producto...</p>
+      ) : productFinal ? (
         <ProductDetail product={productFinal} />
       ) : (
-        <p>Cargando producto...</p>
+        <p>Producto no encontrado.</p>
       )}
     </div>
   );
